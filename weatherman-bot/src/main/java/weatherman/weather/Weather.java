@@ -65,14 +65,15 @@ public class Weather {
 			currentWeather = getWeatherAtTime(cityCode, i);
 		}
 		
-		//Celsius = (5/9) * (Fahrenheit – 32)
 		
 		String weatherReport = null;
 		if (currentWeather != null){
 			JsonObject weather = currentWeather.get("weather")
 									.getAsJsonArray().get(0).getAsJsonObject();
-			String avgTemp = currentWeather.get("main").getAsJsonObject().get("temp").getAsString();
-			weatherReport = "The temperature is " + avgTemp + " degrees Farenheit. " 
+			Double avgTemp = Double.valueOf(currentWeather.get("main").getAsJsonObject().get("temp").getAsString()) - 273.15;
+			String avgTempSt = String.valueOf(avgTemp).split("\\.")[0];
+			
+			weatherReport = "The temperature is " + avgTempSt + " degrees Celsius. " 
 					+ weather.get("description").getAsString() + ".";
 		}
 		//System.out.println(weatherReport);

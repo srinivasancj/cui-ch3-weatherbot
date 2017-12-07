@@ -83,7 +83,7 @@ public class Chatbot {
 		else if (userUtterance.matches("(thanks)|(thank you)")){
 			userAction.add("userIntent", new JsonPrimitive("thank"));
 		}
-		else if (userUtterance.matches("current weather")){
+		else if (userUtterance.matches("current weather") || userUtterance.matches("weather now")){
 			userAction.add("userIntent", new JsonPrimitive("request_current_weather"));
 		}
 		else {
